@@ -6,7 +6,6 @@ module tt_au_BoothMulti_hhrb98 (
  input  wire       ena,      // will go high when the design is enabled
  input wire [3:0] X, Y,
  output wire [7:0] Z,
- reg [7:0] Z,
  reg [3:0] temp,
  integer i,
  reg E1,
