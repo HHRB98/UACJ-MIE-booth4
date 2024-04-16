@@ -1,4 +1,4 @@
-module BoothMulti(X, Y, Z);
+module tt_au_BoothMulti_hhrb98(X, Y, Z);
  input [3:0] X, Y;
  output [7:0] Z;
  reg [7:0] Z;
