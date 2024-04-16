@@ -24,10 +24,10 @@ pinout:
   ui[1]: "X[1]"
   ui[2]: "X[2]"
   ui[3]: "X[3]"
-  ui[4]: "Y[0]"
-  ui[5]: "Y[1]"
-  ui[6]: "Y[2]"
-  ui[7]: "Y[3]"
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
 
   # Outputs
   uo[0]: "Z[0]"
@@ -40,10 +40,10 @@ pinout:
   uo[7]: "Z[7]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
+  uio[0]: "Y[0]"
+  uio[1]: "Y[1]"
+  uio[2]: "Y[2]"
+  uio[3]: "Y[3]"
   uio[4]: ""
   uio[5]: ""
   uio[6]: ""
