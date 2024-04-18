@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+The Booth-4 algorithm is a multiplication algorithm that uses a combination of shifting and addition/subtraction operations to perform signed multiplication of two numbers. It is specifically designed to optimize the multiplication process by reducing the number of required partial products and improving efficiency.
 
 ## How to test
 
-Explain how to use your project
+using test bench, applying phhysicial outputs and see output
 
 ## External hardware
 
