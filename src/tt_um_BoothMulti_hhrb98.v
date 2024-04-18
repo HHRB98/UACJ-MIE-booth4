@@ -1,7 +1,7 @@
 module tt_um_BoothMulti_hhrb98(
-  input  wire [3:0] ui_in,     // Dedicated inputs (restricted to positive numbers)
+  input  wire [7:0] ui_in,     // Dedicated inputs (positive numbers only)
   output wire [7:0] uo_out,    // Dedicated outputs (positive numbers only)
-  input  wire [7:0] uio_in,    // IOs: Input path (restricted to positive numbers)
+  input  wire [7:0] uio_in,    // IOs: Input path (positive numbers only)
   output wire [7:0] uio_out,   // IOs: Output path (positive numbers only)
   output wire [7:0] uio_oe,    // IOs: Enable path (active high: 0=input, 1=output)
   input wire        clk,
@@ -21,8 +21,8 @@ module tt_um_BoothMulti_hhrb98(
   assign uio_oe = ~rst_n;
 
   // Extracting bits from input
-  assign X = ui_in;
-  assign Y = uio_in[7:4];
+  assign X = ui_in[3:0];
+  assign Y = ui_in[7:4];
 
   always @ (X, Y)
   begin
@@ -43,8 +43,11 @@ module tt_um_BoothMulti_hhrb98(
       endcase
       E1 = X[i];
     end
-    if (Z1[7] == 1) // If the MSB of Z1 is 1, set Z to 0
+
+    if (ui_in[7] && ui_in[6]) // If both MSBs of ui_in are 1, set Z to 0
       Z = 8'd0;
+    else if (ui_in[7]) // If the MSB of ui_in is 1, take the two's complement of Z1
+      Z = ~Z1 + 1;
     else
       Z = Z1; // Assign Z1 to Z
   end
