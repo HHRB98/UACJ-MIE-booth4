@@ -13,7 +13,7 @@ module tt_um_BoothMulti_hhrb98(
   wire [3:0] X, Y;
 
   // Output wire
-  wire [7:0] Z;
+  reg [7:0] Z;
 
   // Assigning values to output wires
   assign uio_out = Z;
