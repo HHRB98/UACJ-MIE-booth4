@@ -13,8 +13,8 @@ module tt_um_BoothMulti_hhrb98(
   wire [3:0] X;
   wire [3:0] Y;
 
-  // Output wire
-  wire [7:0] Z;
+  // Output reg
+  reg [7:0] Z;
 
   // Assigning values to output wires
   assign uio_out = Z;
@@ -45,11 +45,11 @@ module tt_um_BoothMulti_hhrb98(
     end
 
     if (ui_in[7] && ui_in[6]) // If both MSBs of ui_in are 1, set Z to 0
-      Z = 8'd0;
+      Z <= 8'd0;
     else if (ui_in[7]) // If the MSB of ui_in is 1, take the two's complement of Z1
-      Z = ~Z1 + 1;
+      Z <= ~Z1 + 1;
     else
-      Z = Z1; // Assign Z1 to Z
+      Z <= Z1; // Assign Z1 to Z
   end
 
   assign uo_out = Z;
