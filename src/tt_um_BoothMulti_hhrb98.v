@@ -55,7 +55,7 @@ module tt_um_BoothMulti_hhrb98(
         2'b01: Z1[7:4] = Z1[7:4] + Y[3:0];
         default: begin end
       endcase
-      Z1 = Z1 >> 1;
+      Z1 = {Z1[6:0], E1}; // Multiply Z1 by 2 and add E1
       E1 = X[i];
     end
     Z <= Z1; // Changed to non-blocking assignment
