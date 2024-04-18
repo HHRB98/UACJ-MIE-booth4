@@ -58,8 +58,9 @@ module tt_um_BoothMulti_hhrb98(
       Z1 = Z1 >> 1;
       E1 = X[i];
     end
+    Z = Z1; // Assigning Z1 to Z
   end
 
-  assign uo_out = Z1;
+  assign uo_out = Z;
 
 endmodule
