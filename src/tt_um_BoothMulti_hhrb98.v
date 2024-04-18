@@ -1,4 +1,4 @@
-module tt_um_BoothMulti_hhrb98(
+module BoothMulti_4bit(
   input  wire [7:0] ui_in,     // Dedicated inputs
   output wire [7:0] uo_out,    // Dedicated outputs
   input  wire [7:0] uio_in,    // IOs: Input path
@@ -13,7 +13,7 @@ module tt_um_BoothMulti_hhrb98(
   wire [3:0] X, Y;
 
   // Output reg
-  reg [7:0] Z; // Changed to reg type
+  reg [7:0] Z;
 
   // Assigning values to output wires
   assign uio_out = Z;
@@ -24,15 +24,15 @@ module tt_um_BoothMulti_hhrb98(
   assign Y = ui_in[7:4];
 
   // Flip flop
-  reg variable; // Changed to reg type
+  reg variable;
 
   always @(posedge clk or negedge rst_n) begin  
     if (~rst_n) begin
       // Reset condition: set variable to 0
-      variable <= 1'b0; // Changed value to 1-bit
+      variable <= 1'b0;
     end else begin
       // Update variable with a value
-      variable <= ena; // Assigning ena to variable
+      variable <= ena;
     end
   end
 
@@ -40,7 +40,7 @@ module tt_um_BoothMulti_hhrb98(
   reg [3:0] temp;
   integer i;
   reg E1;
-  reg [3:0] Y1;
+  reg [7:0] Y1; // Increased width to 8 bits
 
   always @ (X, Y)
   begin
@@ -49,16 +49,20 @@ module tt_um_BoothMulti_hhrb98(
     for (i = 0; i < 4; i = i + 1)
     begin
       temp = {X[i], E1};
-      Y1 = Y;
+      Y1 = {1'b0, Y}; // Padded with a leading zero
       case (temp)
-        2'b10: Z1[7:4] = Z1[7:4] + Y1[3:0];
-        2'b01: Z1[7:4] = Z1[7:4] - Y[3:0]; // Changed + to -
+        2'b10: Z1 = Z1 + Y1;
+        2'b01: Z1 = Z1 - Y1;
         default: begin end
       endcase
-      Z1 = {Z1[6:0], E1}; // Multiply Z1 by 2 and add E1
+      Z1 = Z1 >> 1;
       E1 = X[i];
     end
-    Z <= Z1; // Changed to non-blocking assignment
+
+    // Booth-4 algorithm modifications
+    reg [7:0] Z_shifted;
+    Z_shifted = {Z1[6], Z1};
+    Z = variable ? Z_shifted : Z1;
   end
 
   assign uo_out = Z;
