@@ -12,8 +12,8 @@ module tt_um_BoothMulti_hhrb98(
   // Inputs wire
   wire [3:0] X, Y;
 
-  // Output wire
-  wire [7:0] Z;
+  // Output reg
+  reg [7:0] Z; // Changed to reg type
 
   // Assigning values to output wires
   assign uio_out = Z;
@@ -58,7 +58,7 @@ module tt_um_BoothMulti_hhrb98(
       Z1 = Z1 >> 1;
       E1 = X[i];
     end
-    Z = Z1; // Assigning Z1 to Z
+    Z <= Z1; // Changed to non-blocking assignment
   end
 
   assign uo_out = Z;
