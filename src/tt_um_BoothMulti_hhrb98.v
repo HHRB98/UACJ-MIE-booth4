@@ -52,7 +52,7 @@ module tt_um_BoothMulti_hhrb98(
       Y1 = Y;
       case (temp)
         2'b10: Z1[7:4] = Z1[7:4] + Y1[3:0];
-        2'b01: Z1[7:4] = Z1[7:4] + Y[3:0];
+        2'b01: Z1[7:4] = Z1[7:4] - Y[3:0]; // Changed + to -
         default: begin end
       endcase
       Z1 = {Z1[6:0], E1}; // Multiply Z1 by 2 and add E1
