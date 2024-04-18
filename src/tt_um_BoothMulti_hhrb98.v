@@ -36,15 +36,15 @@ module tt_um_BoothMulti_hhrb98(
     begin
       temp = {X[i], E1};
       case (temp)
-        2'b10: Z1 = Z1 + Y;
-        2'b01: Z1 = Z1 - Y;
+        2'b10: Z1 = Z1 + (Y << i); // Shifting Y by i positions
+        2'b01: Z1 = Z1 - (Y << i); // Shifting Y by i positions
         default: Z1 = Z1; // Added default case to avoid latches
       endcase
-      Z1 = Z1 >> 1;
       E1 = X[i];
     end
+    Z = Z1; // Assigning Z1 to Z
   end
 
-  assign uo_out = Z1;
+  assign uo_out = Z;
 
 endmodule
