@@ -24,7 +24,7 @@ async def test_project(dut):
 
   # Set the input values, wait one clock cycle, and check the output
   dut._log.info("Test")
-  dut.ui_in.value = 116
+  dut.ui_in.value = 117
   dut.uio_in.value = 0
 
   await ClockCycles(dut.clk, 10)
