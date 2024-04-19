@@ -42,7 +42,10 @@ module tt_um_BoothMulti_hhrb98(
       endcase
       E1 = X[i];
     end
-    Z = Z1; // Assigning Z1 to Z
+    if (Z1[7] == 1'b1) // If the result is negative
+      Z = -Z1; // Take the absolute value of the negative result
+    else
+      Z = Z1;
   end
 
   assign uo_out = Z;
